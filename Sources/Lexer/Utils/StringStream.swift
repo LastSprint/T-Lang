@@ -14,10 +14,10 @@ import Common
 /// Implements Copy On Write for intetrnal string so it wont be copied each time you reassign value
 public struct StringStream {
 
-    private let fileContent: CopyOnWriteBox<String>
-    private let filePath: CopyOnWriteBox<String>
+    let fileContent: CopyOnWriteBox<String>
+    let filePath: CopyOnWriteBox<String>
     
-    private var currentIndex: String.Index
+    var currentIndex: String.Index
     
     init(pathToFile: String) throws {
         self.fileContent = .init(try String.init(contentsOfFile: pathToFile))
@@ -33,6 +33,25 @@ public struct StringStream {
 }
 
 extension StringStream: SymbolStream {
+    public mutating func moveBack(on count: Int) {
+        
+        var count = count
+        
+        while count != 0 && self.currentIndex != self.fileContent.value.startIndex {
+            self.currentIndex = self.fileContent.value.index(before: self.currentIndex)
+            count -= 1
+        }
+    }
+    
+    public mutating func moveForward(on count: Int) {
+        var count = count
+        
+        while count != 0 && self.isFinished() {
+            self.currentIndex = self.fileContent.value.index(after: self.currentIndex)
+            count -= 1
+        }
+    }
+    
     mutating public func pop() -> Character? {
         
         if self.isFinished() {
@@ -62,6 +81,11 @@ extension StringStream: SymbolStream {
     }
 }
 
+/// Converts youself into debug view like other compilers. Like:
+/// ```
+///                 ↓
+/// 42: var t = 123*fn(sdf)
+/// ```
 extension StringStream: CustomDebugStringConvertible {
     
     public var debugDescription: String {
@@ -70,7 +94,7 @@ extension StringStream: CustomDebugStringConvertible {
             let (line, lineNumber, characterNumber) = try self.fileContent.value.getLineAndMeta(currentIndex: self.currentIndex)
             
             var result = "File: \(self.filePath.value)\n"
-            let lineStr = "\(lineNumber): \(line)"
+            let lineStr = "Line \(lineNumber): \(line)"
             let pointerPosition = (lineStr.count - line.count) + characterNumber
             result += String(repeating: " ", count: pointerPosition - 2) + "↓" + "\n"
             result += lineStr

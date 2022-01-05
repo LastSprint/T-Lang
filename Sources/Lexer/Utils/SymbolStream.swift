@@ -14,6 +14,12 @@ public protocol SymbolStream {
     /// Return current symbol and then move pointer to the next one
     /// If text is finished before calling `pop` then will return nil
     mutating func pop() -> Character?
+    /// Moves stream pointer back on `count` elements
+    /// If count is bigger than size of the content then method will move pointer on max possible distance
+    mutating func moveBack(on count: Int)
+    /// Moves stream pointer forward on `count` elements
+    /// If count is bigger than size of the content then method will move pointer on max possible distance
+    mutating func moveForward(on count: Int)
     /// Returns current pointed symbol
     /// If text is finished then returns nill
     func current() -> Character?

@@ -123,11 +123,11 @@ In practice, programming languages tend to be associated with just one (a compil
     }
     
     func testKek() {
-        var str = try! StringStream(rawString: text)
+        var str: SymbolStream = try! StringStream(rawString: text)
         for _ in 0...940 {
             str.pop()
         }
         
-        print(str.debugDescription)
+        print(str)
     }
 }
