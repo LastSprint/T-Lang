@@ -11,6 +11,8 @@ import Common
 enum ConstantsTokens: String, CaseIterable {
     case codeInliningBegin = "~{#"
     case codeInliningEnd = "#}~"
+    case stringDelimeter = "\""
+    case newLine = "\n"
     
     static func readToken(token: ConstantsTokens, stream: SymbolStream) -> StreamResult<Bool, SymbolStream> {
         
