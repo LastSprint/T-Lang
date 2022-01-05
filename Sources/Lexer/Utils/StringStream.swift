@@ -46,7 +46,7 @@ extension StringStream: SymbolStream {
     public mutating func moveForward(on count: Int) {
         var count = count
         
-        while count != 0 && self.isFinished() {
+        while count != 0 && !self.isFinished() {
             self.currentIndex = self.fileContent.value.index(after: self.currentIndex)
             count -= 1
         }

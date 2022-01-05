@@ -121,3 +121,34 @@ extension CommonError {
         return CommonError(message: "NOT IMPLEMENTED!!!", line: line, function: function, column: column, file: file)
     }
 }
+
+public struct CompositeError: LocalizedError {
+
+    let nested: Error
+    let message: String
+
+    public init(nested: Error, message: String) {
+        self.nested = nested
+        self.message = message
+    }
+
+    public var errorDescription: String? {
+        return "\(self.message)\n\(nested.localizedDescription)".replacingOccurrences(of: "\n", with: "\n\t")
+    }
+
+    public var rootError: Error {
+        guard let nestedWrapper = nested as? CompositeError else {
+            return nested
+        }
+        return nestedWrapper.rootError
+    }
+
+}
+
+public func wrap<T>(_ wraped: @autoclosure () throws -> T, message: String) throws -> T {
+    do {
+        return try wraped()
+    } catch {
+        throw CompositeError(nested: error, message: message)
+    }
+}

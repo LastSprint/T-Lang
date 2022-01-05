@@ -121,13 +121,4 @@ In practice, programming languages tend to be associated with just one (a compil
         XCTAssertEqual(result.characterNumber, expectedCharNumer)
         XCTAssertEqual(text[stringIndex], result.line[result.line.index(result.line.startIndex, offsetBy: result.characterNumber)])
     }
-    
-    func testKek() {
-        var str: SymbolStream = try! StringStream(rawString: text)
-        for _ in 0...940 {
-            str.pop()
-        }
-        
-        print(str)
-    }
 }
