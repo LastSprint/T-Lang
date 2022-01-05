@@ -20,15 +20,15 @@ final class EntryPointRuleTests: XCTestCase {
     func testCodeLintingReturnedSmth() throws {
         // Arrange
         
-        let codeLiniterStub = StubRule<CodeLintingNode?>(runCommand: {
+        let codeInlineStub = StubRule<CodeInliningNode?>(runCommand: {
             var strCopy = $0.copy()
             _ = strCopy.pop()
             _ = strCopy.pop()
             _ = strCopy.pop()
-            return .init(value: .codeInliningBody(.number(1)), stream: strCopy)
+            return .init(value: .codeInliningBody([.number(1)]), stream: strCopy)
         })
         
-        let rule = FileBodyRule(codeLintingRule: codeLiniterStub.erase(), readCahrRule: ReadCharRule().erase())
+        let rule = FileBodyRule(codeInliningRule: codeInlineStub.erase(), readCahrRule: ReadCharRule().erase())
     
     
         let string = "12345678"
@@ -54,9 +54,9 @@ final class EntryPointRuleTests: XCTestCase {
     func testCodeLintingReturnedNil() throws {
         // Arrange
         
-        let codeLiniterStub = StubRule<CodeLintingNode?>(runCommand: { return .init(value: nil, stream: $0) })
+        let codeInlineStub = StubRule<CodeInliningNode?>(runCommand: { return .init(value: nil, stream: $0) })
         
-        let rule = FileBodyRule(codeLintingRule: codeLiniterStub.erase(), readCahrRule: ReadCharRule().erase())
+        let rule = FileBodyRule(codeInliningRule: codeInlineStub.erase(), readCahrRule: ReadCharRule().erase())
     
     
         let string = "12345678"
@@ -82,9 +82,9 @@ final class EntryPointRuleTests: XCTestCase {
     func testStreamIsOver() throws {
         // Arrange
         
-        let codeLiniterStub = StubRule<CodeLintingNode?>(runCommand: { return .init(value: nil, stream: $0) })
+        let codeInlineStub = StubRule<CodeInliningNode?>(runCommand: { return .init(value: nil, stream: $0) })
         
-        let rule = FileBodyRule(codeLintingRule: codeLiniterStub.erase(), readCahrRule: ReadCharRule().erase())
+        let rule = FileBodyRule(codeInliningRule: codeInlineStub.erase(), readCahrRule: ReadCharRule().erase())
     
     
         let string = "12345678"
@@ -100,5 +100,4 @@ final class EntryPointRuleTests: XCTestCase {
         XCTAssertNil(result.value)
         XCTAssertTrue(result.stream.isFinished())
     }
-    
 }

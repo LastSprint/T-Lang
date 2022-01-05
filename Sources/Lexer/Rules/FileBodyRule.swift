@@ -10,18 +10,18 @@ import Common
 
 public struct FileBodyRule: Rule {
     
-    let codeLintingRule: AnyRule<CodeLintingNode?>
+    let codeInliningRule: AnyRule<CodeInliningNode?>
     let readCahrRule: AnyRule<Character?>
     
     func run(with stream: SymbolStream) throws -> StreamResult<FileBodyNode?, SymbolStream> {
         
-        let codeLinting = try wrap(
-            self.codeLintingRule.run(with: stream),
+        let codeInlining = try wrap(
+            self.codeInliningRule.run(with: stream),
             message: "While parsing code linting rules got error"
         )
         
-        if let guarded = codeLinting.value {
-            return .init(value: .codeInline(guarded), stream: codeLinting.stream)
+        if let guarded = codeInlining.value {
+            return .init(value: .codeInline(guarded), stream: codeInlining.stream)
         }
         
         let charRes = try wrap(

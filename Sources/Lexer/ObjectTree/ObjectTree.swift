@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum CodeInliningBody {
+enum CodeInliningBodyLine {
     case number(Double)
     case string(String)
 }
 
-enum CodeLintingNode {
-    case codeInliningBody(CodeInliningBody)
+enum CodeInliningNode {
+    case codeInliningBody([CodeInliningBodyLine])
 }
 
 enum FileBodyNode {
-    case codeInline(CodeLintingNode)
+    case codeInline(CodeInliningNode)
     case char(Character)
 }

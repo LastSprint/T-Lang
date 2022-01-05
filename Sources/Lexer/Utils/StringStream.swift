@@ -63,6 +63,18 @@ extension StringStream: SymbolStream {
         return result
     }
     
+    mutating public func next() -> Character? {
+        guard !self.isFinished() else { return nil }
+        
+        let nextIndex = self.fileContent.value.index(after: self.currentIndex)
+        
+        guard nextIndex == self.fileContent.value.endIndex else {
+            return nil
+        }
+        
+        return self.fileContent.value[nextIndex]
+    }
+    
     public func current() -> Character? {
         
         if self.isFinished() {

@@ -12,6 +12,22 @@ enum ConstantsTokens: String, CaseIterable {
     case codeInliningBegin = "~{#"
     case codeInliningEnd = "#}~"
     
+    static func readToken(token: ConstantsTokens, stream: SymbolStream) -> StreamResult<Bool, SymbolStream> {
+        
+        var streamCopy = stream
+        
+        for it in token.rawValue {
+            guard
+                let char = streamCopy.pop(),
+                it == char
+            else {
+                return .init(value: false, stream: stream)
+            }
+        }
+        
+        return .init(value: true, stream: streamCopy)
+    }
+    
     static func getAppropriateTokens<T: StringProtocol>(tokens: [T], symbol: Character, index: Int) -> [T] {
         return tokens.filter { it in
             guard it.count > index else {
