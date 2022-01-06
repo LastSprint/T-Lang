@@ -12,6 +12,7 @@ But with cookies 🍪
 3. You can just write code in file and then call this code from the template 🔨
 4. You can import other files and call code from them 🔨
 5. File can contain code and/or template 🔨
+6. LSP Server 🔨
 
 ## Language
 1. Supports strings and number literal ✅
