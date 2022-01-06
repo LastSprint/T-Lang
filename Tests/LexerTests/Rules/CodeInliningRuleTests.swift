@@ -27,7 +27,7 @@ final class CodeInliningRuleTests: XCTestCase {
         
         let rule = CodeInliningRule(bodyLineRule: stub.erase())
         
-        let str = "123#}~"
+        let str = "123}"
         let stream = try StringStream(rawString: str)
         
         // Act
@@ -49,7 +49,7 @@ final class CodeInliningRuleTests: XCTestCase {
         
         let rule = CodeInliningRule(bodyLineRule: stub.erase())
         
-        let str = "~{##}~"
+        let str = "@{}"
         let stream = try StringStream(rawString: str)
         
         // Act
@@ -77,7 +77,7 @@ final class CodeInliningRuleTests: XCTestCase {
         
         let rule = CodeInliningRule(bodyLineRule: stub.erase())
         
-        let str = "~{#"
+        let str = "@{"
         let stream = try StringStream(rawString: str)
         
         // Act - Assert
@@ -96,7 +96,7 @@ final class CodeInliningRuleTests: XCTestCase {
         
         let rule = CodeInliningRule(bodyLineRule: stub.erase())
         
-        let str = "~{# 113 #}~"
+        let str = "@{ 113 }"
         let stream = try StringStream(rawString: str)
         
         // Act

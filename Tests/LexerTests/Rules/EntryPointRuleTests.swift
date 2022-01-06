@@ -28,7 +28,7 @@ final class EntryPointRuleTests: XCTestCase {
             return .init(value: .codeInliningBody([.number(1)]), stream: strCopy)
         })
         
-        let rule = FileBodyRule(codeInliningRule: codeInlineStub.erase(), readCahrRule: ReadCharRule().erase())
+        let rule = ReadTemplateRule(codeInliningRule: codeInlineStub.erase(), readCharRule: ReadCharRule().erase())
     
     
         let string = "12345678"
@@ -56,7 +56,7 @@ final class EntryPointRuleTests: XCTestCase {
         
         let codeInlineStub = StubRule<CodeInliningNode?>(runCommand: { return .init(value: nil, stream: $0) })
         
-        let rule = FileBodyRule(codeInliningRule: codeInlineStub.erase(), readCahrRule: ReadCharRule().erase())
+        let rule = ReadTemplateRule(codeInliningRule: codeInlineStub.erase(), readCharRule: ReadCharRule().erase())
     
     
         let string = "12345678"
@@ -84,7 +84,7 @@ final class EntryPointRuleTests: XCTestCase {
         
         let codeInlineStub = StubRule<CodeInliningNode?>(runCommand: { return .init(value: nil, stream: $0) })
         
-        let rule = FileBodyRule(codeInliningRule: codeInlineStub.erase(), readCahrRule: ReadCharRule().erase())
+        let rule = ReadTemplateRule(codeInliningRule: codeInlineStub.erase(), readCharRule: ReadCharRule().erase())
     
     
         let string = "12345678"

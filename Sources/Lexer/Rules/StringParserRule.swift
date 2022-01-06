@@ -8,6 +8,13 @@
 import Foundation
 import Common
 
+/// Parse string as `".*"` from cahracter stream
+/// It will skip all empty characters before string begining
+///
+/// If string doesnt have ending (`"sdfsdf`) then error will be thrown
+/// If string has line break (`"sdf\nsdfs"`) error will be thrown
+///
+/// Rule works until string ending token won't be read from stream or stream won't be over
 struct StringParserRule: Rule {
     
     func run(with stream: SymbolStream) throws -> StreamResult<String?, SymbolStream> {

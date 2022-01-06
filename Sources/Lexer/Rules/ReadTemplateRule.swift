@@ -8,10 +8,10 @@
 import Foundation
 import Common
 
-public struct FileBodyRule: Rule {
+public struct ReadTemplateRule: Rule {
     
     let codeInliningRule: AnyRule<CodeInliningNode?>
-    let readCahrRule: AnyRule<Character?>
+    let readCharRule: AnyRule<Character?>
     
     func run(with stream: SymbolStream) throws -> StreamResult<FileBodyNode?, SymbolStream> {
         
@@ -25,7 +25,7 @@ public struct FileBodyRule: Rule {
         }
         
         let charRes = try wrap(
-            self.readCahrRule.run(with: stream),
+            self.readCharRule.run(with: stream),
             message: "While parsing CHAR token"
         )
         

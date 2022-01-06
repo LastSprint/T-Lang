@@ -9,8 +9,8 @@ import Foundation
 import Common
 
 enum ConstantsTokens: String, CaseIterable {
-    case codeInliningBegin = "~{#"
-    case codeInliningEnd = "#}~"
+    case codeInliningBegin = "@{"
+    case codeInliningEnd = "}"
     case stringDelimeter = "\""
     case newLine = "\n"
     
@@ -29,6 +29,7 @@ enum ConstantsTokens: String, CaseIterable {
         
         return .init(value: true, stream: streamCopy)
     }
+
     
     static func getAppropriateTokens<T: StringProtocol>(tokens: [T], symbol: Character, index: Int) -> [T] {
         return tokens.filter { it in
