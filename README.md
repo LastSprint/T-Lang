@@ -6,8 +6,8 @@ But with cookies 🍪
 
 ## Features:
 1. You can write template as is in any file ✅
-2. You can inline some code right in template 🔨
-    1. Inline returns just string. Withput line breaking or something. 🔨
+2. You can inline some code right in template ✅
+    1. Inline returns just string. Withput line breaking or something. ✅
     2. Inline supports `yield return` 🔨
 3. You can just write code in file and then call this code from the template 🔨
 4. You can import other files and call code from them 🔨
@@ -28,5 +28,4 @@ But with cookies 🍪
 7. Supports `yield return` 🔨
 8. Supports input args as immutable const 🔨 
 9. Supports custom types 🔨
-
-
+10. Supports comments in code
