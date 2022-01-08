@@ -12,6 +12,8 @@ import Common
 /// Makes it possible to hide file reading implementation
 ///
 /// Implements Copy On Write for intetrnal string so it wont be copied each time you reassign value
+///
+/// - See: `Common.CopyOnWriteBox`
 public struct StringStream {
 
     let fileContent: CopyOnWriteBox<String>

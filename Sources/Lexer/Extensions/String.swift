@@ -55,4 +55,6 @@ extension String {
         
         return (line, lineNumber, line.count + currentCounter)
     }
+    
+    func duplicateAndUppercased() -> String { self + self.uppercased() }
 }

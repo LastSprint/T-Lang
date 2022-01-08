@@ -19,8 +19,6 @@ import Common
 ///
 /// For more details see `NumberParserRuleTests`
 struct NumberParserRule: Rule {
-
-    static let numbers = Set<Character>(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
     
     func run(with stream: SymbolStream) throws -> StreamResult<Double?, SymbolStream> {
         var streamCopy = stream.copy()
@@ -42,7 +40,7 @@ struct NumberParserRule: Rule {
                 continue
             }
             
-            guard NumberParserRule.numbers.contains(current) else { break }
+            guard Consts.numbersCharaterSet.contains(current) else { break }
             
             resultString.append(current)
             _ = streamCopy.pop()
@@ -50,7 +48,7 @@ struct NumberParserRule: Rule {
         
         guard !resultString.isEmpty else { return .init(value: nil, stream: stream) }
         
-        if let lastSymbol = resultString.last, !NumberParserRule.numbers.contains(lastSymbol) {
+        if let lastSymbol = resultString.last, !Consts.numbersCharaterSet.contains(lastSymbol) {
             resultString = String(resultString.dropLast())
             streamCopy.moveBack(on: 1)
         }

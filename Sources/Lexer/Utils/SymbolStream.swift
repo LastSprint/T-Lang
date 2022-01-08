@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Interface for any thing which can read text date symbol by symbol
+/// Interface for any thing which can read text symbol by symbol
 ///
 /// See Also: `StringStream`
 public protocol SymbolStream {

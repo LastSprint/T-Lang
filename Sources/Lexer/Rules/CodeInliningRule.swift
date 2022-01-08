@@ -52,7 +52,7 @@ struct CodeInliningRule: Rule {
             }
             
             if bodyLineResult.value == nil {
-                throw CommonError(message: "Code inlining must have close sybol \(ConstantsTokens.codeInliningEnd.rawValue) in the end\n\(streamCopy)")
+                throw CommonError(message: "Code inlining must have close sybol \(ConstantsTokens.codeInliningEnd) in the end\n\(streamCopy)")
             }
         }
         

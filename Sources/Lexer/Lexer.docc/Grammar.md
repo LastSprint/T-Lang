@@ -37,8 +37,8 @@ FUNC_KEYWORD = "fn"
 
 // -- Common
 
-any_name_rule = [a-zA-Z_\-]+[0-9]*
-return_expression_rule = RETURN_KEYWORD expression_rule
+any_name_rule = [a-zA-Z_]+[0-9]*
+literal_rule = NUMBER | STRING
 
 // -- Function
 
@@ -52,7 +52,9 @@ func_decl_rule = FUNC_KEYWORD any_name_rule FUNC_ARGS_START func_args_decl? FUNC
 
 // -- Base
 
-expression_rule = NUMBER | STRING | func_call_rule | any_name_rule 
+return_expression_rule = RETURN_KEYWORD expression_rule
+
+expression_rule = literal_rule | func_call_rule | any_name_rule 
 
 code_block_rule = return_expression_rule
 

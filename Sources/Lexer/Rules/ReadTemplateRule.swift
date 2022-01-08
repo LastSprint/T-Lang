@@ -1,5 +1,5 @@
 //
-//  EntryPointRule.swift
+//  ReadTemplateRule.swift
 //  
 //
 //  Created by Александр Кравченков on 05.01.2022.
@@ -13,7 +13,7 @@ public struct ReadTemplateRule: Rule {
     let codeInliningRule: AnyRule<CodeInliningNode?>
     let readCharRule: AnyRule<Character?>
     
-    func run(with stream: SymbolStream) throws -> StreamResult<FileBodyNode?, SymbolStream> {
+    public func run(with stream: SymbolStream) throws -> StreamResult<FileBodyNode?, SymbolStream> {
         
         let codeInlining = try wrap(
             self.codeInliningRule.run(with: stream),
